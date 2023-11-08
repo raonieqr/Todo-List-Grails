@@ -65,9 +65,7 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-remote-driver:4.10.0")
     testImplementation("org.seleniumhq.selenium:selenium-support:4.10.0")
     testImplementation("org.spockframework:spock-core")
-    testRuntimeOnly("org.seleniumhq.selenium:selenium-chrome-driver:4.10.0")
-    testRuntimeOnly("org.seleniumhq.selenium:selenium-firefox-driver:4.10.0")
-    testRuntimeOnly("org.seleniumhq.selenium:selenium-safari-driver:4.10.0")
+    testRuntimeOnly("org.seleniumhq.selenium:selenium-chrome-driver:4.15.0")
     testImplementation("io.micronaut:micronaut-http-client")
     profile "org.grails.profiles:web:3.2.1"
 
@@ -86,15 +84,14 @@ tasks.withType(Test) {
     systemProperty "geb.env", System.getProperty('geb.env')
     systemProperty "geb.build.reportsDir", reporting.file("geb/integrationTest")
     systemProperty 'webdriver.chrome.driver', "${System.getenv('CHROMEWEBDRIVER')}/chromedriver"
-    systemProperty 'webdriver.gecko.driver', "${System.getenv('GECKOWEBDRIVER')}/geckodriver"
 }
 tasks.withType(War).configureEach { War war ->
     war.dependsOn compileGroovyPages
 }
 webdriverBinaries {
-    chromedriver '110.0.5481.77'
-    geckodriver '0.32.2'
-    edgedriver '110.0.1587.57'
+    chromedriver {
+        versionRegexp = ".*"
+    }
 }
 assets {
     minifyJs = true
