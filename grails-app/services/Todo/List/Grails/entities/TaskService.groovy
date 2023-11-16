@@ -1,6 +1,5 @@
 package Todo.List.Grails.entities
 
-import Todo.List.Grails.entities.Task
 import grails.gorm.services.Service
 
 @Service(Task)

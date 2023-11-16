@@ -1,5 +1,7 @@
 package Todo.List.Grails.entities
 
+import Todo.List.Grails.enums.Priority
+import Todo.List.Grails.enums.Status
 import grails.gorm.annotation.Entity
 
 @Entity
@@ -8,12 +10,20 @@ class Task {
     String name
     String description
     String category
-    String priority
-    String status
+    Priority priority
+    Status status
 
     static constraints = {
-        priority inList: ["Muito Baixa", "Baixa", "Média", "Alta", "Muito Alta"]
-        status inList: ["A fazer", "Em progresso", "Feito"]
+        priority inList: Priority.values().toList()
+        status inList: Status.values().toList()
+    }
+
+    Task(String name, String description, String category, Priority priority, Status status) {
+        this.name = name
+        this.description = description
+        this.category = category
+        this.priority = priority
+        this.status = status
     }
 }
 

@@ -1,8 +1,6 @@
 package Todo.List.Grails.entities
 
-
 import grails.validation.ValidationException
-
 import static org.springframework.http.HttpStatus.*
 
 class TaskController {
@@ -33,7 +31,7 @@ class TaskController {
         try {
             taskService.save(task)
         } catch (ValidationException e) {
-            respond task, view:'create'
+            respond task.errors, view:'create'
             return
         }
 
@@ -44,7 +42,6 @@ class TaskController {
             }
             '*' { respond task, [status: CREATED] }
         }
-
     }
 
     def edit(Long id) {
@@ -60,17 +57,17 @@ class TaskController {
         try {
             taskService.save(task)
         } catch (ValidationException e) {
-            respond task, view:'edit'
+            respond task.errors, view:'edit'
             return
         }
 
         request.withFormat {
-            '*' {
-                flash.message = message(code: 'default.updated.message', args: ['Task', task.id]) as Object
-                redirect action: "show", id: task.id
+            form multipartForm {
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'task.label', default: 'Task'), task.id])
+                redirect task
             }
+            '*'{ respond task, [status: OK] }
         }
-
     }
 
     def delete(Long id) {
@@ -82,21 +79,21 @@ class TaskController {
         taskService.delete(id)
 
         request.withFormat {
-            '*' {
-                flash.message = message(code: 'default.deleted.message', args: ['Task', id]) as Object
-                redirect action: "index", method: "GET"
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'task.label', default: 'Task'), id])
+                redirect action:"index", method:"GET"
             }
+            '*'{ render status: NO_CONTENT }
         }
-
     }
 
     protected void notFound() {
         request.withFormat {
-            '*' {
-                flash.message = message(code: 'default.not.found.message', args: ['Task', params.id]) as Object
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'task.label', default: 'Task'), params.id])
                 redirect action: "index", method: "GET"
             }
+            '*'{ render status: NOT_FOUND }
         }
-
     }
 }

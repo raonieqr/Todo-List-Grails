@@ -1,3 +1,6 @@
+<%@ page import="Todo.List.Grails.enums.Priority" %>
+<%@ page import="Todo.List.Grails.enums.Status" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,8 +35,28 @@
                     </g:hasErrors>
                     <g:form resource="${this.task}" method="POST">
                         <fieldset class="form">
-                            <f:all bean="task"/>
+                            <div class="fieldcontain required">
+                                <label for="priority"><g:message code="task.priority.label" default="Priority" /></label>
+                                <g:select name="priority" from="${Priority.values()}" value="${task?.priority}" />
+                            </div>
+                            <div class="fieldcontain required">
+                                <label for="status"><g:message code="task.status.label" default="Status" /></label>
+                                <g:select name="status" from="${Status.values()}" value="${task?.status}" />
+                            </div>
+                            <div class="fieldcontain required">
+                                <label for="name"><g:message code="task.name.label" default="Name" /></label>
+                                <input type="text" name="name" value="${task?.name}" />
+                            </div>
+                            <div class="fieldcontain">
+                                <label for="description"><g:message code="task.description.label" default="Description" /></label>
+                                <input name="description" ${task?.description}/>
+                            </div>
+                            <div class="fieldcontain">
+                                <label for="category"><g:message code="task.category.label" default="Category" /></label>
+                                <input type="text" name="category" value="${task?.category}" />
+                            </div>
                         </fieldset>
+
                         <fieldset class="buttons">
                             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                         </fieldset>

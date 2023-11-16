@@ -1,6 +1,5 @@
 package Todo.List.Grails.entities
 
-
 import grails.testing.gorm.DomainUnitTest
 import grails.testing.web.controllers.ControllerUnitTest
 import grails.validation.ValidationException
