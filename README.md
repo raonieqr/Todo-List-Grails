@@ -1,23 +1,12 @@
-## Grails 6.0.0 Documentation
+# Todo List in Grails
+This is a simple to-do list app built in Grails using the Gradle build system.
 
-- [User Guide](https://docs.grails.org/6.0.0/guide/index.html)
-- [API Reference](https://docs.grails.org/6.0.0/api/index.html)
-- [Grails Guides](https://guides.grails.org/index.html)
----
+## System Requirements
+Java Development Kit (JDK) version 8 or higher.   
+Grails version 4.0.0 or higher.   
+Gradle (optional, as the project already includes the Gradle Wrapper).   
 
-## Feature geb documentation
-
-- [Grails Geb Functional Testing for Grails documentation](https://github.com/grails3-plugins/geb#readme)
-
-- [https://www.gebish.org/manual/current/](https://www.gebish.org/manual/current/)
-
-## Feature asset-pipeline-grails documentation
-
-- [Grails Asset Pipeline Core documentation](https://www.asset-pipeline.com/manual/)
-
-## Feature scaffolding documentation
-
-- [Grails Scaffolding Plugin documentation](https://grails.github.io/scaffolding/latest/groovydoc/)
-
-- [https://grails-fields-plugin.github.io/grails-fields/latest/guide/index.html](https://grails-fields-plugin.github.io/grails-fields/latest/guide/index.html)
-
+## Functionalities
+Add, edit and delete tasks.    
+Set priority and status for each task.   
+View task list.   
